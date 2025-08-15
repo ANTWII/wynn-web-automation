@@ -148,14 +148,52 @@ export class _UploadPage extends _common {
     await this.waitForUploadComplete();
   }
 
-  /**
-   * Get error message if present
-   */
   async getErrorMessage(): Promise<string | null> {
-    const errorLocator = this.page.locator('.error-message, .alert-danger');
-    if (await errorLocator.isVisible()) {
-      return await this.getElementText(errorLocator);
+    const errorSelectors = [
+      '.error-message',
+      '.alert-danger', 
+      '.error',
+      '.upload-error',
+      '[class*="error"]',
+      '.invalid-feedback',
+      '.text-danger',
+      '.alert.alert-danger',
+      '#error-message'
+    ];
+    
+    for (const selector of errorSelectors) {
+      try {
+        const errorLocator = this.page.locator(selector);
+        if (await errorLocator.isVisible({ timeout: 2000 })) {
+          const errorText = await this.getElementText(errorLocator);
+          if (errorText && errorText.trim().length > 0) {
+            return errorText.trim();
+          }
+        }
+      } catch (error) {
+        continue;
+      }
     }
+    
+    try {
+      const alertText = await this.page.evaluate(() => {
+        const alerts = document.querySelectorAll('[role="alert"]');
+        for (let i = 0; i < alerts.length; i++) {
+          const alert = alerts[i];
+          if (alert.textContent && alert.textContent.trim()) {
+            return alert.textContent.trim();
+          }
+        }
+        return null;
+      });
+      
+      if (alertText) {
+        return alertText;
+      }
+    } catch (error) {
+      // No alerts found
+    }
+    
     return null;
   }
 

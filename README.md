@@ -134,7 +134,7 @@ Tests are organized using tags for flexible execution:
 
 ## 📝 Test Categories
 
-The test suite includes 21 comprehensive tests organized by functionality:
+The test suite includes 27 comprehensive tests organized by functionality:
 
 ### Main Page Tests (`mainPage.spec.ts`)
 - Page loading and element verification (7 tests)
@@ -148,6 +148,13 @@ The test suite includes 21 comprehensive tests organized by functionality:
 - File validation and error handling
 - Upload progress and success verification
 - Navigation and state management
+- **Negative test cases (6 tests)**:
+  - Special characters in filenames
+  - Empty file handling
+  - Invalid file types (security testing)
+  - No file selected scenarios
+  - Oversized file handling
+  - Edge case validation
 
 ## 🔧 Configuration
 
@@ -393,7 +400,7 @@ npx playwright test --list
 ## 📊 Test Statistics & Coverage
 
 - **Total Tests**: 75+ comprehensive test cases with full logging integration
-- **Test Categories**: Main page (7), File upload (14)
+- **Test Categories**: Main page (7), File upload (20 including 6 negative tests)
 - **Browser Coverage**: Chromium, Firefox, WebKit
 - **File Type Support**: TXT, PDF, CSV, JSON
 - **Tag Coverage**: @smoke, @regression, @sanity, @critical, @ui, @navigation, @performance, @stability

@@ -113,6 +113,86 @@ export class TestDataManager {
       };
       fs.writeFileSync(jsonFilePath, JSON.stringify(jsonContent, null, 2));
     }
+
+    // Create PDF test file
+    const pdfFilePath = path.join(uploadDir, 'test-document.pdf');
+    if (!fs.existsSync(pdfFilePath)) {
+      this.createTestPDFFile(pdfFilePath);
+    }
+  }
+
+  /**
+   * Create a simple PDF file for testing
+   */
+  private createTestPDFFile(filePath: string): void {
+    try {
+      // Try to create PDF using reportlab if available
+      const { execSync } = require('child_process');
+      const pythonScript = `
+import os
+try:
+    from reportlab.pdfgen import canvas
+    from reportlab.lib.pagesizes import letter
+    
+    c = canvas.Canvas('${filePath}', pagesize=letter)
+    width, height = letter
+    
+    c.drawString(100, height - 100, 'Test Document for Automated Testing')
+    c.drawString(100, height - 130, 'This is a sample PDF file used for file upload tests.')
+    c.drawString(100, height - 160, 'Created for Playwright automation testing.')
+    c.drawString(100, height - 190, 'File size: Small (~2KB)')
+    c.drawString(100, height - 220, 'Test data for web automation framework')
+    
+    c.save()
+    print('PDF created successfully')
+except ImportError:
+    # Fallback: create a minimal PDF structure manually
+    pdf_content = """%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+>>
+endobj
+xref
+0 4
+0000000000 65535 f 
+0000000009 00000 n 
+0000000074 00000 n 
+0000000120 00000 n 
+trailer
+<<
+/Size 4
+/Root 1 0 R
+>>
+startxref
+178
+%%EOF"""
+    with open('${filePath}', 'w') as f:
+        f.write(pdf_content)
+    print('Fallback PDF created')
+`;
+      
+      execSync(`python3 -c "${pythonScript}"`, { cwd: process.cwd() });
+    } catch (error) {
+      // Fallback: create a simple text file with PDF extension for basic testing
+      console.warn('Could not create PDF file, creating fallback text file:', error);
+      fs.writeFileSync(filePath, 'This is a test file with .pdf extension for basic upload testing.');
+    }
   }
 
   /**

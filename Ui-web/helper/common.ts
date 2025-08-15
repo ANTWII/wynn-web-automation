@@ -7,7 +7,6 @@ import fs from 'fs';
 export class _common {
   readonly page: Page;
   readonly context: BrowserContext;
-  readonly url: string;
 
   constructor(page: Page, context: BrowserContext) {
     this.page = page;

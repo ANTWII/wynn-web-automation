@@ -1,10 +1,13 @@
 # Dependencies
 node_modules/
 npm-debug.log*
+package-lock.json
 
 # Test artifacts
-/test-results/
+/Ui-web/test-results/
+/Ui-web/playwright-report/
 /playwright-report/
+/test-results/
 /playwright/.cache/
 
 # OS generated files
@@ -23,7 +26,7 @@ Thumbs.db
 *.swo
 
 # Logs
-logs
+logs/
 *.log
 
 # Environment files
@@ -35,6 +38,10 @@ logs
 dist/
 build/
 
-# Screenshots (if not needed in version control)
+# Screenshots and downloads (generated during tests)
 screenshots/
 downloads/
+
+# Allure reports
+allure-results/
+allure-report/

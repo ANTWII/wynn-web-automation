@@ -8,10 +8,12 @@ A comprehensive web automation testing framework built with Playwright and TypeS
 - **File Upload Testing**: Comprehensive file upload functionality with multiple file types
 - **Tagged Test Execution**: Organized test execution with @smoke, @regression, @sanity, @critical tags
 - **Page Object Model**: Clean, maintainable test architecture
+- **Comprehensive Logging**: Structured JSON logging with Winston for test execution tracking
 - **CI/CD Integration**: GitHub Actions workflow for automated testing
 - **Test Data Management**: Automated test file generation with PDF creation support
 - **Comprehensive Reporting**: HTML reports with screenshots and videos
 - **TypeScript Support**: Full type safety and modern JavaScript features
+- **Error Handling**: Robust error handling with detailed logging and recovery mechanisms
 
 ## 📁 Project Structure
 
@@ -20,6 +22,9 @@ wynn-web-automation/
 ├── .github/
 │   └── workflows/
 │       └── playwright-tests.yml      # GitHub Actions CI/CD pipeline
+├── logs/
+│   ├── test-execution.log            # All test execution logs
+│   └── error.log                     # Error-only logs
 ├── Ui-web/
 │   ├── config/
 │   │   └── configmanager.ts          # Environment configuration
@@ -38,7 +43,7 @@ wynn-web-automation/
 │   ├── utils/
 │   │   ├── testDataManager.ts        # Test data management
 │   │   ├── fileHelper.ts             # File operations utility
-│   │   └── logger.ts                 # Logging utility
+│   │   └── logger.ts                 # Winston-based logging utility
 │   └── playwright-report/            # Generated test reports
 ├── playwright.config.ts              # Playwright configuration
 └── package.json                      # Dependencies and scripts
@@ -226,6 +231,47 @@ Robust PDF creation with multiple fallback mechanisms:
 2. **Fallback**: Minimal PDF structure
 3. **Emergency**: Text file with .pdf extension
 
+## 📋 Logging and Monitoring
+
+### Comprehensive Test Logging
+
+The framework includes Winston-based structured logging for complete test execution visibility:
+
+#### Log Files
+- **`logs/test-execution.log`**: All test execution logs with timestamps
+- **`logs/error.log`**: Error-only logs for debugging failures
+
+#### Log Format
+```json
+{
+  "level": "info",
+  "message": "Starting test: Verify successful upload of text file",
+  "service": "playwright-tests",
+  "timestamp": "2025-08-15 12:13:37"
+}
+```
+
+#### Logging Pattern in Tests
+```typescript
+test('Test Name', async ({ fixtures }) => {
+  logger.info('Starting test: Test Name');
+  
+  try {
+    // Test logic here
+  } catch (error) {
+    logger.error('Test failed: Test Name', error as Error);
+    throw error;
+  }
+});
+```
+
+#### Features
+- **Console Output**: Colorized logs during test execution
+- **File Rotation**: Automatic log file rotation (5MB max, 5 files kept)
+- **Structured Format**: JSON formatting for easy parsing and analysis
+- **Error Tracking**: Detailed error logging with stack traces
+- **Test Lifecycle**: Start/end logging for complete test visibility
+
 ## 📈 Reporting
 
 ### Test Reports
@@ -349,9 +395,38 @@ npx playwright test --list
 | `npm run report` | View test reports |
 | `npm run install:browsers` | Install Playwright browsers |
 
-## 📊 Test Statistics
+## 📊 Test Statistics & Coverage
 
-- **Total Tests**: 75+ comprehensive test cases
+- **Total Tests**: 75+ comprehensive test cases with full logging integration
+- **Test Categories**: Main page (7), File upload (14), Advanced scenarios (multiple)
+- **Browser Coverage**: Chromium, Firefox, WebKit
+- **File Type Support**: TXT, PDF, CSV, JSON
+- **Tag Coverage**: @smoke, @regression, @sanity, @critical, @ui, @navigation, @performance, @stability
+- **Logging Coverage**: 100% of tests include structured logging
+- **CI/CD Integration**: Automated testing on all pull requests and pushes
+
+## 🚀 Recent Improvements
+
+### ✅ Logging Integration (Latest)
+- Comprehensive Winston-based logging across all test files
+- Structured JSON logs with timestamps and error tracking
+- Console output with colorized formatting
+- Automatic log file rotation and management
+
+### ✅ Enhanced Error Handling
+- Improved MainPage navigation with timeout handling
+- Robust PDF file creation with multiple fallback mechanisms
+- Better error recovery and retry mechanisms
+
+### ✅ Code Quality
+- Removed all comments from test files for cleaner code
+- Eliminated duplicate workflow files
+- Optimized project structure and organization
+
+### ✅ Test Optimization
+- Implemented beforeEach hooks to reduce redundant navigation
+- Tagged test format for flexible test execution
+- Cleaned up unused files and dependencies
 - **Coverage**: Main page navigation, file uploads, error handling
 - **Browsers**: Chromium, Firefox, WebKit support
 - **File Types**: TXT, PDF, CSV, JSON upload testing

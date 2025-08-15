@@ -1,8 +1,10 @@
 import test from '../helper/baseTest';
 import { expect } from '@playwright/test';
 import { TestDataManager } from '../utils/testDataManager';
+import { Logger } from '../utils/logger';
 
 test.describe('Test Data Manager Tests', () => {
+  const logger = Logger.getInstance();
   let testDataManager: TestDataManager;
 
   test.beforeEach(() => {
@@ -11,27 +13,48 @@ test.describe('Test Data Manager Tests', () => {
   });
 
   test('should validate file formats correctly', async () => {
-    expect(testDataManager.isValidFileFormat('test.txt')).toBe(true);
-    expect(testDataManager.isValidFileFormat('document.pdf')).toBe(true);
-    expect(testDataManager.isValidFileFormat('image.png')).toBe(true);
+    logger.info('Starting test: should validate file formats correctly');
     
-    expect(testDataManager.isInvalidFileFormat('virus.exe')).toBe(true);
-    expect(testDataManager.isInvalidFileFormat('script.bat')).toBe(true);
+    try {
+      expect(testDataManager.isValidFileFormat('test.txt')).toBe(true);
+      expect(testDataManager.isValidFileFormat('document.pdf')).toBe(true);
+      expect(testDataManager.isValidFileFormat('image.png')).toBe(true);
+      
+      expect(testDataManager.isInvalidFileFormat('virus.exe')).toBe(true);
+      expect(testDataManager.isInvalidFileFormat('script.bat')).toBe(true);
+    } catch (error) {
+      logger.error('Test failed: should validate file formats correctly', error as Error);
+      throw error;
+    }
   });
 
   test('should create test files with different sizes', async () => {
-    const testFilePath = testDataManager.getTestFilePath('test-file.txt');
-    expect(testFilePath).toContain('test-data/upload/test-file.txt');
+    logger.info('Starting test: should create test files with different sizes');
+    
+    try {
+      const testFilePath = testDataManager.getTestFilePath('test-file.txt');
+      expect(testFilePath).toContain('test-data/upload/test-file.txt');
+    } catch (error) {
+      logger.error('Test failed: should create test files with different sizes', error as Error);
+      throw error;
+    }
   });
 
   test('should provide file upload test data configuration', async () => {
-    const config = testDataManager.getFileUploadTestData();
+    logger.info('Starting test: should provide file upload test data configuration');
     
-    expect(config.validFormats).toContain('txt');
-    expect(config.validFormats).toContain('pdf');
-    expect(config.invalidFormats).toContain('exe');
-    expect(config.maxFileSize).toBe(5);
-    expect(config.testFiles.small).toBe('test-small.txt');
+    try {
+      const config = testDataManager.getFileUploadTestData();
+      
+      expect(config.validFormats).toContain('txt');
+      expect(config.validFormats).toContain('pdf');
+      expect(config.invalidFormats).toContain('exe');
+      expect(config.maxFileSize).toBe(5);
+      expect(config.testFiles.small).toBe('test-small.txt');
+    } catch (error) {
+      logger.error('Test failed: should provide file upload test data configuration', error as Error);
+      throw error;
+    }
   });
 
   test('should create files with specific size for testing', async () => {

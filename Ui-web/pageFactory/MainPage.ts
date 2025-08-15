@@ -86,9 +86,14 @@ export class _MainPage extends _common {
    * Navigate to main page
    */
   async navigate(): Promise<void> {
-    await this.page.goto('/');
-    await this.waitForNetworkIdle();
-    await this.waitForElementWithRetry(this.pageHeading);
+    try {
+      await this.page.goto('/', { waitUntil: 'domcontentloaded', timeout: 30000 });
+      await this.waitForElementWithRetry(this.pageHeading);
+    } catch (error) {
+      console.log('Navigation failed, retrying with fallback...');
+      await this.page.goto('https://the-internet.herokuapp.com/', { waitUntil: 'domcontentloaded', timeout: 30000 });
+      await this.waitForElementWithRetry(this.pageHeading);
+    }
   }
 
   /**

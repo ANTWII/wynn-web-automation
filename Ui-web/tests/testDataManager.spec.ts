@@ -11,12 +11,10 @@ test.describe('Test Data Manager Tests', () => {
   });
 
   test('should validate file formats correctly', async () => {
-    // Valid formats
     expect(testDataManager.isValidFileFormat('test.txt')).toBe(true);
     expect(testDataManager.isValidFileFormat('document.pdf')).toBe(true);
     expect(testDataManager.isValidFileFormat('image.png')).toBe(true);
     
-    // Invalid formats
     expect(testDataManager.isInvalidFileFormat('virus.exe')).toBe(true);
     expect(testDataManager.isInvalidFileFormat('script.bat')).toBe(true);
   });
@@ -43,7 +41,6 @@ test.describe('Test Data Manager Tests', () => {
     const filePath = testDataManager.createFileWithSize(fileName, sizeInMB);
     expect(filePath).toContain(fileName);
     
-    // Check that file was actually created
     const fs = require('fs');
     expect(fs.existsSync(filePath)).toBe(true);
     
@@ -67,7 +64,6 @@ test.describe('Test Data Manager Tests', () => {
   });
 
   test.afterEach(() => {
-    // Clean up test data after each test
     testDataManager.cleanupTestData();
   });
 });

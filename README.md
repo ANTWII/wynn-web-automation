@@ -38,8 +38,7 @@ wynn-web-automation/
 │   │   └── upload/                   # Test files for upload testing
 │   ├── tests/
 │   │   ├── mainPage.spec.ts          # Main page tests
-│   │   ├── upload.spec.ts            # File upload tests
-│   │   └── testDataManager.spec.ts   # Test data manager tests
+│   │   └── upload.spec.ts            # File upload tests
 │   ├── utils/
 │   │   ├── testDataManager.ts        # Test data management
 │   │   ├── fileHelper.ts             # File operations utility
@@ -135,24 +134,20 @@ Tests are organized using tags for flexible execution:
 
 ## 📝 Test Categories
 
+The test suite includes 21 comprehensive tests organized by functionality:
+
 ### Main Page Tests (`mainPage.spec.ts`)
-- Page loading and element verification
+- Page loading and element verification (7 tests)
 - Navigation functionality
 - Link availability and accessibility
-- Error handling
+- Error handling and graceful recovery
 
 ### File Upload Tests (`upload.spec.ts`)
-- Single and multiple file uploads
+- Single and multiple file uploads (14 tests)
 - Different file types (TXT, PDF, CSV, JSON)
 - File validation and error handling
 - Upload progress and success verification
 - Navigation and state management
-
-### Test Data Manager Tests (`testDataManager.spec.ts`)
-- Test file generation and management
-- File format validation
-- Size limit testing
-- Data integrity verification
 
 ## 🔧 Configuration
 
@@ -398,7 +393,7 @@ npx playwright test --list
 ## 📊 Test Statistics & Coverage
 
 - **Total Tests**: 75+ comprehensive test cases with full logging integration
-- **Test Categories**: Main page (7), File upload (14), Advanced scenarios (multiple)
+- **Test Categories**: Main page (7), File upload (14)
 - **Browser Coverage**: Chromium, Firefox, WebKit
 - **File Type Support**: TXT, PDF, CSV, JSON
 - **Tag Coverage**: @smoke, @regression, @sanity, @critical, @ui, @navigation, @performance, @stability

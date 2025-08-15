@@ -1,9 +1,9 @@
-import { BrowserContext, expect, Locator,FrameLocator, Page } from '@playwright/test';
+import { BrowserContext, expect, Locator, FrameLocator, Page } from '@playwright/test';
+import * as path from 'path';
+import { _common } from '../helper/common';
 
-export class _UploadPage  {
+export class _UploadPage extends _common {
   // Locators
-    readonly page: Page;
-    readonly context: BrowserContext;
    readonly fileInput: Locator;
    readonly uploadButton: Locator;
    readonly uploadedFileInfo: Locator;
@@ -14,10 +14,9 @@ export class _UploadPage  {
    readonly uploadedFileName: Locator;
 
 
-   
+
  constructor(page: Page, context: BrowserContext) {
-    this.page = page;
-    this.context = context;
+    super(page, context);
     
     // Initialize locators
     this.fileInput = page.locator('#file-upload');
@@ -36,8 +35,8 @@ export class _UploadPage  {
    */
   async navigate(): Promise<void> {
     await this.page.goto('/upload');
-    await this.waitForPageLoad();
-    await this.waitForElement(this.fileInput);
+    await this.waitForNetworkIdle();
+    await this.waitForElementWithRetry(this.fileInput);
   }
 
   /**
@@ -75,7 +74,7 @@ export class _UploadPage  {
    */
   async getUploadedFileName(): Promise<string> {
     await this.uploadedFileInfo.waitFor({ state: 'visible', timeout: 5000 });
-    return await this.getText(this.uploadedFileInfo);
+    return await this.getElementText(this.uploadedFileInfo);
   }
 
   /**
@@ -84,7 +83,7 @@ export class _UploadPage  {
   async isUploadSuccessful(): Promise<boolean> {
     try {
       await this.uploadSuccessMessage.waitFor({ state: 'visible', timeout: 5000 });
-      const text = await this.getText(this.uploadSuccessMessage);
+      const text = await this.getElementText(this.uploadSuccessMessage);
       return text === 'File Uploaded!';
     } catch {
       return false;
@@ -95,7 +94,7 @@ export class _UploadPage  {
    * Get page title text
    */
   async getPageTitle(): Promise<string> {
-    return await this.getText(this.pageTitle);
+    return await this.getElementText(this.pageTitle);
   }
 
   /**
@@ -116,14 +115,14 @@ export class _UploadPage  {
    * Get upload button text
    */
   async getUploadButtonText(): Promise<string> {
-    return await this.getText(this.uploadButton);
+    return await this.getElementText(this.uploadButton);
   }
 
   /**
    * Check if file input is visible
    */
   async isFileInputVisible(): Promise<boolean> {
-    return await this.isElementVisible(this.fileInput);
+    return await this.fileInput.isVisible();
   }
 
   /**
@@ -136,13 +135,12 @@ export class _UploadPage  {
     const dataTransfer = await this.page.evaluateHandle(() => new DataTransfer());
     
     // Add the file to the DataTransfer
-    await this.page.evaluateHandle(
-      async (dt, path) => {
-        const file = new File([''], path);
-        dt.items.add(file);
+    await this.page.evaluate(
+      ({ dataTransfer, filePath }: { dataTransfer: any, filePath: string }) => {
+        const file = new File([''], filePath);
+        dataTransfer.items.add(file);
       },
-      dataTransfer,
-      absolutePath
+      { dataTransfer, filePath: absolutePath }
     );
     
     // Dispatch the drop event
@@ -156,7 +154,7 @@ export class _UploadPage  {
   async getErrorMessage(): Promise<string | null> {
     const errorLocator = this.page.locator('.error-message, .alert-danger');
     if (await errorLocator.isVisible()) {
-      return await this.getText(errorLocator);
+      return await this.getElementText(errorLocator);
     }
     return null;
   }

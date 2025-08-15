@@ -1,0 +1,239 @@
+{
+  "config": {
+    "configFile": "/Users/isaacwilliamsnanaantwi/Documents/wynn/wynn-web-automation/playwright.config.ts",
+    "rootDir": "/Users/isaacwilliamsnanaantwi/Documents/wynn/wynn-web-automation/Ui-web/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "./Ui-web/playwright-report"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "./Ui-web/test-results/junit.xml"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./Ui-web/test-results/test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/isaacwilliamsnanaantwi/Documents/wynn/wynn-web-automation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/isaacwilliamsnanaantwi/Documents/wynn/wynn-web-automation/Ui-web/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/isaacwilliamsnanaantwi/Documents/wynn/wynn-web-automation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/isaacwilliamsnanaantwi/Documents/wynn/wynn-web-automation/Ui-web/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/isaacwilliamsnanaantwi/Documents/wynn/wynn-web-automation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/isaacwilliamsnanaantwi/Documents/wynn/wynn-web-automation/Ui-web/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.54.2",
+    "workers": 5,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "upload.spec.ts",
+      "file": "upload.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Upload Page Tests",
+          "file": "upload.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should navigate to upload page and verify page elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-b3e7a11082be363c5a3d",
+              "file": "upload.spec.ts",
+              "line": 5,
+              "column": 7
+            },
+            {
+              "title": "should upload a file successfully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-bdf46f30dff24c1ae618",
+              "file": "upload.spec.ts",
+              "line": 16,
+              "column": 7
+            },
+            {
+              "title": "should navigate to upload page and verify page elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-9ed800dcce401e32b473",
+              "file": "upload.spec.ts",
+              "line": 5,
+              "column": 7
+            },
+            {
+              "title": "should upload a file successfully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-c8f9a468eea40c54255f",
+              "file": "upload.spec.ts",
+              "line": 16,
+              "column": 7
+            },
+            {
+              "title": "should navigate to upload page and verify page elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-6b6622dbd8530fa7be8f",
+              "file": "upload.spec.ts",
+              "line": 5,
+              "column": 7
+            },
+            {
+              "title": "should upload a file successfully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-2c8ebd8c8227aa36b9c1",
+              "file": "upload.spec.ts",
+              "line": 16,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-08-15T02:11:09.044Z",
+    "duration": 59.60699999999997,
+    "expected": 0,
+    "skipped": 6,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

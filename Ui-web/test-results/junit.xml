@@ -1,0 +1,32 @@
+<testsuites id="" name="" tests="6" failures="0" skipped="6" errors="0" time="0.05960699999999997">
+<testsuite name="upload.spec.ts" timestamp="2025-08-15T02:11:09.103Z" hostname="chromium" tests="2" failures="0" skipped="2" time="0" errors="0">
+<testcase name="Upload Page Tests › should navigate to upload page and verify page elements" classname="upload.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Upload Page Tests › should upload a file successfully" classname="upload.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="upload.spec.ts" timestamp="2025-08-15T02:11:09.103Z" hostname="firefox" tests="2" failures="0" skipped="2" time="0" errors="0">
+<testcase name="Upload Page Tests › should navigate to upload page and verify page elements" classname="upload.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Upload Page Tests › should upload a file successfully" classname="upload.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="upload.spec.ts" timestamp="2025-08-15T02:11:09.103Z" hostname="webkit" tests="2" failures="0" skipped="2" time="0" errors="0">
+<testcase name="Upload Page Tests › should navigate to upload page and verify page elements" classname="upload.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Upload Page Tests › should upload a file successfully" classname="upload.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>

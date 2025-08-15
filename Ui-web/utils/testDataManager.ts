@@ -1,18 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 
-interface UserCredentials {
-  username: string;
-  password: string;
-}
-
-interface TestUser {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-}
-
 interface FileUploadTestData {
   validFormats: string[];
   invalidFormats: string[];
@@ -40,7 +28,6 @@ export class TestDataManager {
   private ensureTestDataStructure(): void {
     const directories = [
       this.testDataPath,
-      path.join(this.testDataPath, 'register'),
       path.join(this.testDataPath, 'upload'),
       path.join(this.testDataPath, 'downloads')
     ];
@@ -50,56 +37,6 @@ export class TestDataManager {
         fs.mkdirSync(dir, { recursive: true });
       }
     });
-  }
-
-  /**
-   * Get user credentials
-   */
-  getUserCredentials(): UserCredentials {
-    const credentialsPath = path.join(this.testDataPath, 'register', 'credentials.json');
-    
-    if (!fs.existsSync(credentialsPath)) {
-      const defaultCredentials = {
-        username: 'testuser',
-        password: 'TestPassword123!'
-      };
-      fs.writeFileSync(credentialsPath, JSON.stringify(defaultCredentials, null, 2));
-      return defaultCredentials;
-    }
-
-    try {
-      const data = fs.readFileSync(credentialsPath, 'utf-8');
-      return JSON.parse(data);
-    } catch (error) {
-      console.error('Error reading credentials file:', error);
-      throw new Error('Failed to load user credentials');
-    }
-  }
-
-  /**
-   * Get test user data
-   */
-  getTestUser(): TestUser {
-    const userPath = path.join(this.testDataPath, 'register', 'user.json');
-    
-    if (!fs.existsSync(userPath)) {
-      const defaultUser = {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        phone: '+1234567890'
-      };
-      fs.writeFileSync(userPath, JSON.stringify(defaultUser, null, 2));
-      return defaultUser;
-    }
-
-    try {
-      const data = fs.readFileSync(userPath, 'utf-8');
-      return JSON.parse(data);
-    } catch (error) {
-      console.error('Error reading user file:', error);
-      throw new Error('Failed to load test user data');
-    }
   }
 
   /**
@@ -151,6 +88,12 @@ export class TestDataManager {
       fs.writeFileSync(largeFilePath, content);
     }
 
+    // Create main test file
+    const testFilePath = path.join(uploadDir, 'test-file.txt');
+    if (!fs.existsSync(testFilePath)) {
+      fs.writeFileSync(testFilePath, 'This is the main test file for upload testing.\nIt contains multiple lines of text.\nUsed for standard upload tests.');
+    }
+
     // Create CSV test file
     const csvFilePath = path.join(uploadDir, 'test-data.csv');
     if (!fs.existsSync(csvFilePath)) {
@@ -180,81 +123,23 @@ export class TestDataManager {
   }
 
   /**
-   * Generate random test data
-   */
-  generateRandomUser(): TestUser {
-    const randomId = Math.random().toString(36).substring(2, 8);
-    const timestamp = Date.now();
-    return {
-      firstName: `TestUser${randomId}`,
-      lastName: `LastName${randomId}`,
-      email: `test${randomId}${timestamp}@example.com`,
-      phone: `+1${Math.floor(Math.random() * 9000000000) + 1000000000}`
-    };
-  }
-
-  /**
-   * Save user data to file
-   */
-  saveUserData(user: TestUser, fileName?: string): void {
-    const userFileName = fileName || `user-${Date.now()}.json`;
-    const userPath = path.join(this.testDataPath, 'register', userFileName);
-    
-    try {
-      fs.writeFileSync(userPath, JSON.stringify(user, null, 2));
-    } catch (error) {
-      console.error('Error saving user data:', error);
-      throw new Error('Failed to save user data');
-    }
-  }
-
-  /**
-   * Get all saved users
-   */
-  getAllUsers(): TestUser[] {
-    const registerDir = path.join(this.testDataPath, 'register');
-    const users: TestUser[] = [];
-
-    if (fs.existsSync(registerDir)) {
-      const files = fs.readdirSync(registerDir).filter(file => 
-        file.startsWith('user-') && file.endsWith('.json')
-      );
-
-      files.forEach(file => {
-        try {
-          const filePath = path.join(registerDir, file);
-          const data = fs.readFileSync(filePath, 'utf-8');
-          users.push(JSON.parse(data));
-        } catch (error) {
-          console.warn(`Failed to read user file ${file}:`, error);
-        }
-      });
-    }
-
-    return users;
-  }
-
-  /**
    * Clean up test data files
    */
   cleanupTestData(): void {
     const uploadDir = path.join(this.testDataPath, 'upload');
-    const registerDir = path.join(this.testDataPath, 'register');
 
-    [uploadDir, registerDir].forEach(dir => {
-      if (fs.existsSync(dir)) {
-        const files = fs.readdirSync(dir);
-        files.forEach(file => {
-          if (file.startsWith('test-') || file.startsWith('user-')) {
-            try {
-              fs.unlinkSync(path.join(dir, file));
-            } catch (error) {
-              console.warn(`Failed to delete file ${file}:`, error);
-            }
+    if (fs.existsSync(uploadDir)) {
+      const files = fs.readdirSync(uploadDir);
+      files.forEach(file => {
+        if (file.startsWith('test-')) {
+          try {
+            fs.unlinkSync(path.join(uploadDir, file));
+          } catch (error) {
+            console.warn(`Failed to delete file ${file}:`, error);
           }
-        });
-      }
-    });
+        }
+      });
+    }
   }
 
   /**
@@ -343,15 +228,12 @@ export class TestDataManager {
    */
   getTestDataSummary(): any {
     const uploadDir = path.join(this.testDataPath, 'upload');
-    const registerDir = path.join(this.testDataPath, 'register');
     
     const uploadFiles = fs.existsSync(uploadDir) ? fs.readdirSync(uploadDir) : [];
-    const registerFiles = fs.existsSync(registerDir) ? fs.readdirSync(registerDir) : [];
     
     return {
       testDataPath: this.testDataPath,
       uploadFiles: uploadFiles.length,
-      registerFiles: registerFiles.length,
       availableTestFiles: uploadFiles,
       fileUploadConfig: this.getFileUploadTestData()
     };

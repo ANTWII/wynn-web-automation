@@ -10,22 +10,6 @@ test.describe('Test Data Manager Tests', () => {
     testDataManager.initialize();
   });
 
-  test('should create and manage user credentials', async () => {
-    // Get default credentials
-    const credentials = testDataManager.getUserCredentials();
-    expect(credentials.username).toBe('testuser');
-    expect(credentials.password).toBe('TestPassword123!');
-  });
-
-  test('should generate random user data', async () => {
-    const randomUser = testDataManager.generateRandomUser();
-    
-    expect(randomUser.firstName).toContain('TestUser');
-    expect(randomUser.lastName).toContain('LastName');
-    expect(randomUser.email).toContain('@example.com');
-    expect(randomUser.phone).toMatch(/^\+1\d{10}$/);
-  });
-
   test('should validate file formats correctly', async () => {
     // Valid formats
     expect(testDataManager.isValidFileFormat('test.txt')).toBe(true);
@@ -52,15 +36,34 @@ test.describe('Test Data Manager Tests', () => {
     expect(config.testFiles.small).toBe('test-small.txt');
   });
 
-  test('should save and retrieve user data', async () => {
-    const testUser = testDataManager.generateRandomUser();
+  test('should create files with specific size for testing', async () => {
+    const fileName = 'test-size-file.txt';
+    const sizeInMB = 1;
     
-    // Save user data
-    testDataManager.saveUserData(testUser, 'test-user.json');
+    const filePath = testDataManager.createFileWithSize(fileName, sizeInMB);
+    expect(filePath).toContain(fileName);
     
-    // Retrieve all users (should include the one we just saved)
-    const allUsers = testDataManager.getAllUsers();
-    expect(allUsers.length).toBeGreaterThan(0);
+    // Check that file was actually created
+    const fs = require('fs');
+    expect(fs.existsSync(filePath)).toBe(true);
+    
+    const actualSize = testDataManager.getFileSizeInMB(filePath);
+    expect(actualSize).toBeCloseTo(sizeInMB, 1);
+  });
+
+  test('should get random valid test file', async () => {
+    const randomFilePath = testDataManager.getRandomValidFile();
+    expect(randomFilePath).toContain('test-data/upload/');
+    expect(randomFilePath).not.toContain('.exe');
+  });
+
+  test('should provide test data summary', async () => {
+    const summary = testDataManager.getTestDataSummary();
+    
+    expect(summary.testDataPath).toBeDefined();
+    expect(summary.uploadFiles).toBeGreaterThanOrEqual(0);
+    expect(summary.availableTestFiles).toBeDefined();
+    expect(summary.fileUploadConfig).toBeDefined();
   });
 
   test.afterEach(() => {

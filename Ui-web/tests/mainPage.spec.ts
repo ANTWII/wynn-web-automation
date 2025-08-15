@@ -47,7 +47,6 @@ test.describe('Main Page Tests', () => {
     
     // Verify some expected links are present
     expect(links).toContain('File Upload');
-    expect(links).toContain('Basic Auth');
     expect(links).toContain('Checkboxes');
     
     // Get navigation links count

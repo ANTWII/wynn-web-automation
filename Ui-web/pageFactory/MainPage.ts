@@ -10,7 +10,6 @@ export class _MainPage extends _common {
   
   // Specific navigation links
   readonly fileUploadLink: Locator;
-  readonly basicAuthLink: Locator;
   readonly checkboxesLink: Locator;
   readonly contextMenuLink: Locator;
   readonly dragAndDropLink: Locator;
@@ -21,7 +20,6 @@ export class _MainPage extends _common {
   readonly entryAdLink: Locator;
   readonly exitIntentLink: Locator;
   readonly fileDownloadLink: Locator;
-  readonly formAuthenticationLink: Locator;
   readonly forgotPasswordLink: Locator;
   readonly hoversLink: Locator;
   readonly infiniteScrollLink: Locator;
@@ -53,7 +51,6 @@ export class _MainPage extends _common {
     
     // Specific navigation links
     this.fileUploadLink = page.locator('a[href="/upload"]');
-    this.basicAuthLink = page.locator('a[href="/basic_auth"]');
     this.checkboxesLink = page.locator('a[href="/checkboxes"]');
     this.contextMenuLink = page.locator('a[href="/context_menu"]');
     this.dragAndDropLink = page.locator('a[href="/drag_and_drop"]');
@@ -64,7 +61,6 @@ export class _MainPage extends _common {
     this.entryAdLink = page.locator('a[href="/entry_ad"]');
     this.exitIntentLink = page.locator('a[href="/exit_intent"]');
     this.fileDownloadLink = page.locator('a[href="/download"]');
-    this.formAuthenticationLink = page.locator('a[href="/login"]');
     this.forgotPasswordLink = page.locator('a[href="/forgot_password"]');
     this.hoversLink = page.locator('a[href="/hovers"]');
     this.infiniteScrollLink = page.locator('a[href="/infinite_scroll"]');
@@ -173,7 +169,6 @@ export class _MainPage extends _common {
     const linkMap: { [key: string]: Locator } = {
       'file upload': this.fileUploadLink,
       'upload': this.fileUploadLink,
-      'basic auth': this.basicAuthLink,
       'checkboxes': this.checkboxesLink,
       'context menu': this.contextMenuLink,
       'drag and drop': this.dragAndDropLink,
@@ -184,7 +179,6 @@ export class _MainPage extends _common {
       'entry ad': this.entryAdLink,
       'exit intent': this.exitIntentLink,
       'file download': this.fileDownloadLink,
-      'form authentication': this.formAuthenticationLink,
       'forgot password': this.forgotPasswordLink,
       'hovers': this.hoversLink,
       'infinite scroll': this.infiniteScrollLink,

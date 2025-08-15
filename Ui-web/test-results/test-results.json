@@ -90,6 +90,383 @@
   },
   "suites": [
     {
+      "title": "testDataManager.spec.ts",
+      "file": "testDataManager.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Test Data Manager Tests",
+          "file": "testDataManager.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should create and manage user credentials",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-1fc5275a9e1f41f37845",
+              "file": "testDataManager.spec.ts",
+              "line": 13,
+              "column": 7
+            },
+            {
+              "title": "should generate random user data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-081d35282bef1f6f31ff",
+              "file": "testDataManager.spec.ts",
+              "line": 20,
+              "column": 7
+            },
+            {
+              "title": "should validate file formats correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-baff25f3830f2fa5c2d7",
+              "file": "testDataManager.spec.ts",
+              "line": 29,
+              "column": 7
+            },
+            {
+              "title": "should create test files with different sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-6c6384bc987019b042d9",
+              "file": "testDataManager.spec.ts",
+              "line": 40,
+              "column": 7
+            },
+            {
+              "title": "should provide file upload test data configuration",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-ef8f319c48f01ffcf9a8",
+              "file": "testDataManager.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "should save and retrieve user data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-f1834a4424890f3c8698",
+              "file": "testDataManager.spec.ts",
+              "line": 55,
+              "column": 7
+            },
+            {
+              "title": "should create and manage user credentials",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-f2ddb76b974dcb9b71cb",
+              "file": "testDataManager.spec.ts",
+              "line": 13,
+              "column": 7
+            },
+            {
+              "title": "should generate random user data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-de8d0663100c587bb54e",
+              "file": "testDataManager.spec.ts",
+              "line": 20,
+              "column": 7
+            },
+            {
+              "title": "should validate file formats correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-a58afe373c417d7c8df3",
+              "file": "testDataManager.spec.ts",
+              "line": 29,
+              "column": 7
+            },
+            {
+              "title": "should create test files with different sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-7b5893d26c878184cbf6",
+              "file": "testDataManager.spec.ts",
+              "line": 40,
+              "column": 7
+            },
+            {
+              "title": "should provide file upload test data configuration",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-7edae6fd1efa5035da85",
+              "file": "testDataManager.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "should save and retrieve user data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-050218d38a4ed60b3755",
+              "file": "testDataManager.spec.ts",
+              "line": 55,
+              "column": 7
+            },
+            {
+              "title": "should create and manage user credentials",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-8d11fbf8dfca1426e57b",
+              "file": "testDataManager.spec.ts",
+              "line": 13,
+              "column": 7
+            },
+            {
+              "title": "should generate random user data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-927310863602dfb1630b",
+              "file": "testDataManager.spec.ts",
+              "line": 20,
+              "column": 7
+            },
+            {
+              "title": "should validate file formats correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-274c74c20ff83d0c5705",
+              "file": "testDataManager.spec.ts",
+              "line": 29,
+              "column": 7
+            },
+            {
+              "title": "should create test files with different sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-f3b7f2566ad84c6c6ccf",
+              "file": "testDataManager.spec.ts",
+              "line": 40,
+              "column": 7
+            },
+            {
+              "title": "should provide file upload test data configuration",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-b83509db8a857dcfefab",
+              "file": "testDataManager.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "should save and retrieve user data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "927bc0e019c13711343d-a6f85971845053b45137",
+              "file": "testDataManager.spec.ts",
+              "line": 55,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "upload.spec.ts",
       "file": "upload.spec.ts",
       "column": 0,
@@ -123,7 +500,7 @@
               "column": 7
             },
             {
-              "title": "should upload a file successfully",
+              "title": "should upload a file successfully using test data manager",
               "ok": true,
               "tags": [],
               "tests": [
@@ -137,9 +514,49 @@
                   "status": "skipped"
                 }
               ],
-              "id": "64f97298e5aac3754605-bdf46f30dff24c1ae618",
+              "id": "64f97298e5aac3754605-70c728a484e52b5982c7",
               "file": "upload.spec.ts",
               "line": 16,
+              "column": 7
+            },
+            {
+              "title": "should validate file format using test data manager",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-f06fe52b330e651dfbf0",
+              "file": "upload.spec.ts",
+              "line": 29,
+              "column": 7
+            },
+            {
+              "title": "should handle different file sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-4a1926acd2ea1888969b",
+              "file": "upload.spec.ts",
+              "line": 40,
               "column": 7
             },
             {
@@ -163,7 +580,7 @@
               "column": 7
             },
             {
-              "title": "should upload a file successfully",
+              "title": "should upload a file successfully using test data manager",
               "ok": true,
               "tags": [],
               "tests": [
@@ -177,9 +594,49 @@
                   "status": "skipped"
                 }
               ],
-              "id": "64f97298e5aac3754605-c8f9a468eea40c54255f",
+              "id": "64f97298e5aac3754605-28805ffeecd33872e68c",
               "file": "upload.spec.ts",
               "line": 16,
+              "column": 7
+            },
+            {
+              "title": "should validate file format using test data manager",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-b5f7fc2e98c15f4382cd",
+              "file": "upload.spec.ts",
+              "line": 29,
+              "column": 7
+            },
+            {
+              "title": "should handle different file sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-fdb80bf479f0108ac296",
+              "file": "upload.spec.ts",
+              "line": 40,
               "column": 7
             },
             {
@@ -203,7 +660,7 @@
               "column": 7
             },
             {
-              "title": "should upload a file successfully",
+              "title": "should upload a file successfully using test data manager",
               "ok": true,
               "tags": [],
               "tests": [
@@ -217,9 +674,49 @@
                   "status": "skipped"
                 }
               ],
-              "id": "64f97298e5aac3754605-2c8ebd8c8227aa36b9c1",
+              "id": "64f97298e5aac3754605-7e3542c1687cba661954",
               "file": "upload.spec.ts",
               "line": 16,
+              "column": 7
+            },
+            {
+              "title": "should validate file format using test data manager",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-ab7cc994dc8ebf5765f3",
+              "file": "upload.spec.ts",
+              "line": 29,
+              "column": 7
+            },
+            {
+              "title": "should handle different file sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "64f97298e5aac3754605-4a2765d632421ba6624e",
+              "file": "upload.spec.ts",
+              "line": 40,
               "column": 7
             }
           ]
@@ -229,10 +726,10 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-15T02:11:09.044Z",
-    "duration": 59.60699999999997,
+    "startTime": "2025-08-15T02:23:06.318Z",
+    "duration": 14.932000000000016,
     "expected": 0,
-    "skipped": 6,
+    "skipped": 30,
     "unexpected": 0,
     "flaky": 0
   }

@@ -13,16 +13,39 @@ test.describe('Upload Page Tests', () => {
     await expect(UploadPage.uploadButton).toBeVisible();
   });
 
-  test('should upload a file successfully', async ({ page, UploadPage }) => {
+  test('should upload a file successfully using test data manager', async ({ page, UploadPage, testDataManager }) => {
     await UploadPage.navigate();
     
-    // Create a test file
-    const testFilePath = './Ui-web/test-data/upload/test-file.txt';
+    // Get test file path from test data manager
+    const testFilePath = testDataManager.getTestFilePath('test-file.txt');
     
     // Upload the file
     await UploadPage.uploadFile(testFilePath);
     
     // Verify upload success
     await expect(UploadPage.uploadedFileInfo).toBeVisible();
+  });
+
+  test('should validate file format using test data manager', async ({ testDataManager }) => {
+    // Test valid file formats
+    const validFormats = testDataManager.getFileUploadTestData().validFormats;
+    expect(validFormats).toContain('txt');
+    expect(validFormats).toContain('pdf');
+    
+    // Test file format validation
+    expect(testDataManager.isValidFileFormat('document.pdf')).toBe(true);
+    expect(testDataManager.isValidFileFormat('script.exe')).toBe(false);
+  });
+
+  test('should handle different file sizes', async ({ page, UploadPage, testDataManager }) => {
+    await UploadPage.navigate();
+    
+    // Test with small file
+    const smallFilePath = testDataManager.getTestFilePath('test-small.txt');
+    await UploadPage.uploadFile(smallFilePath);
+    
+    // Verify upload success
+    const isSuccessful = await UploadPage.isUploadSuccessful();
+    expect(isSuccessful).toBe(true);
   });
 });

@@ -7,7 +7,7 @@ test.describe('Main Page Tests', () => {
     await MainPage.navigate();
   });
 
-  test('should load main page and verify elements', async ({ MainPage }) => {
+  test('Verify main page loads and all elements are present', { tag: ["@smoke", "@sanity"] }, async ({ MainPage }) => {
     // Main page is already loaded in beforeEach
     
     // Verify page title
@@ -23,7 +23,23 @@ test.describe('Main Page Tests', () => {
     expect(isFileUploadVisible).toBe(true);
   });
 
-  test('should navigate from main page to upload page', async ({ MainPage, UploadPage }) => {
+  test('Verify all main page elements are present before navigation', { tag: ["@smoke", "@sanity"] }, async ({ MainPage }) => {
+    // Main page is already loaded in beforeEach
+    
+    // Verify all elements are present
+    const elementsPresent = await MainPage.verifyMainPageElements();
+    expect(elementsPresent).toBeTruthy();
+    
+    // Get all available links
+    const links = await MainPage.getAllNavigationLinks();
+    expect(links).toContain('File Upload');
+    
+    // Verify File Upload link is visible
+    const isFileUploadVisible = await MainPage.isLinkVisible('File Upload');
+    expect(isFileUploadVisible).toBe(true);
+  });
+
+  test('Verify navigation from main page to upload page', { tag: ["@smoke", "@regression"] }, async ({ MainPage, UploadPage }) => {
     // Main page is already loaded in beforeEach
     
     // Click on File Upload link
@@ -38,7 +54,7 @@ test.describe('Main Page Tests', () => {
     expect(pageTitle).toBe('File Uploader');
   });
 
-  test('should get all navigation links from main page', async ({ MainPage }) => {
+  test('Verify all navigation links are available on main page', { tag: ["@sanity", "@regression"] }, async ({ MainPage }) => {
     // Main page is already loaded in beforeEach
     
     // Get all navigation links
@@ -54,7 +70,7 @@ test.describe('Main Page Tests', () => {
     expect(count).toBeGreaterThan(10);
   });
 
-  test('should navigate to different test pages', async ({ MainPage }) => {
+  test('Verify navigation to different test pages works correctly', { tag: ["@regression", "@navigation"] }, async ({ MainPage }) => {
     // Main page is already loaded in beforeEach
     
     // Test navigation to upload page using the helper method
@@ -69,7 +85,7 @@ test.describe('Main Page Tests', () => {
     expect(await MainPage.page.url()).toContain('/checkboxes');
   });
 
-  test('should verify page is fully loaded', async ({ MainPage }) => {
+  test('Verify main page is fully loaded and responsive', { tag: ["@sanity", "@performance"] }, async ({ MainPage }) => {
     // Main page is already loaded in beforeEach
     
     // Check if page is fully loaded
@@ -84,7 +100,7 @@ test.describe('Main Page Tests', () => {
     expect(isVisible).toBe(true);
   });
 
-  test('should handle navigation errors gracefully', async ({ MainPage }) => {
+  test('Verify navigation error handling works gracefully', { tag: ["@regression", "@stability"] }, async ({ MainPage }) => {
     // Main page is already loaded in beforeEach
     
     // Try to navigate to a non-existent page

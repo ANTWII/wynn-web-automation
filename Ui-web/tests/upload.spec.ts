@@ -26,22 +26,6 @@ test.describe('File Upload via Main Page Navigation', () => {
     expect(uploadPageTitle).toBe('File Uploader');
   });
 
-  test('Verify all main page elements are present before navigation', { tag: ["@smoke", "@sanity"] }, async ({ MainPage }) => {
-    // Main page is already loaded in beforeEach
-    
-    // Verify all elements are present
-    const elementsPresent = await MainPage.verifyMainPageElements();
-    expect(elementsPresent).toBeTruthy();
-    
-    // Get all available links
-    const links = await MainPage.getAllNavigationLinks();
-    expect(links).toContain('File Upload');
-    
-    // Verify File Upload link is visible
-    const isFileUploadVisible = await MainPage.isLinkVisible('File Upload');
-    expect(isFileUploadVisible).toBe(true);
-  });
-
   test('Verify file upload functionality after navigating from main page', { tag: ["@smoke", "@regression", "@critical"] }, async ({ MainPage, UploadPage, testDataManager }) => {
     // Main page is already loaded in beforeEach
     await MainPage.clickFileUpload();

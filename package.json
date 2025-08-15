@@ -8,6 +8,10 @@
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug",
+    "test:smoke": "playwright test --grep '@smoke'",
+    "test:regression": "playwright test --grep '@regression'",
+    "test:sanity": "playwright test --grep '@sanity'",
+    "test:critical": "playwright test --grep '@critical'",
     "report": "playwright show-report ./Ui-web/playwright-report",
     "install:browsers": "playwright install"
   },

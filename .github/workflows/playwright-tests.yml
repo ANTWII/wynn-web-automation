@@ -1,0 +1,145 @@
+
+name: Playwright Test Automation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: 'Test type to run'
+        required: false
+        default: 'smoke'
+        type: choice
+        options:
+          - smoke
+          - regression
+          - sanity
+          - critical
+          - all
+      browser:
+        description: 'Browser to test'
+        required: false
+        default: 'chromium'
+        type: choice
+        options:
+          - chromium
+          - firefox
+          - webkit
+          - all
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+        
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps ${{ matrix.browser }}
+      
+    - name: Install Python dependencies for PDF generation
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install reportlab
+        
+    - name: Run Smoke Tests
+      run: npm run test:smoke -- --project=${{ matrix.browser }}
+      env:
+        CI: true
+        
+    - name: Upload Playwright Report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report-${{ matrix.browser }}-${{ github.run_number }}
+        path: Ui-web/playwright-report/
+        retention-days: 30
+        
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: test-results-${{ matrix.browser }}-${{ github.run_number }}
+        path: Ui-web/test-results/
+        retention-days: 7
+
+  regression-tests:
+    timeout-minutes: 90
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium]
+        
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps ${{ matrix.browser }}
+      
+    - name: Install Python dependencies for PDF generation
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install reportlab
+        
+    - name: Run Regression Tests
+      run: npm run test:regression -- --project=${{ matrix.browser }}
+      env:
+        CI: true
+        
+    - name: Upload Regression Report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: regression-report-${{ matrix.browser }}-${{ github.run_number }}
+        path: Ui-web/playwright-report/
+        retention-days: 30
+
+  notify:
+    needs: [test, regression-tests]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Check test results
+      run: |
+        if [[ "${{ needs.test.result }}" == "failure" || "${{ needs.regression-tests.result }}" == "failure" ]]; then
+          echo "❌ Some tests failed"
+          exit 1
+        else
+          echo "✅ All tests passed"
+        fi

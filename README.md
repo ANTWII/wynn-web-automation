@@ -53,7 +53,6 @@ wynn-web-automation/
 ### Prerequisites
 
 - **Node.js** (v20 or higher)
-- **Python 3** (for PDF file generation)
 - **Git**
 
 ### Installation
@@ -72,11 +71,6 @@ wynn-web-automation/
 3. **Install Playwright browsers**:
    ```bash
    npm run install:browsers
-   ```
-
-4. **Install Python dependencies** (for PDF generation):
-   ```bash
-   pip3 install reportlab
    ```
 
 ## 🚀 Running Tests
@@ -199,7 +193,6 @@ The project includes a comprehensive GitHub Actions workflow (`playwright-tests.
 
 - **Triggers**: Automatically runs on pushes, PRs, daily schedule, and manual dispatch
 - **Multi-browser testing**: Parallel execution across Chromium, Firefox, and WebKit
-- **Python dependency installation**: Automatic setup for PDF generation
 - **Artifact management**: Stores test reports and failure videos
 - **Smart execution**: Separate jobs for smoke tests and regression tests
 
@@ -229,7 +222,7 @@ The framework automatically creates test files:
 ### PDF File Generation
 
 Robust PDF creation with multiple fallback mechanisms:
-1. **Primary**: Python reportlab library
+1. **Primary**: Built-in PDF structure
 2. **Fallback**: Minimal PDF structure
 3. **Emergency**: Text file with .pdf extension
 
@@ -356,8 +349,7 @@ export class NewPage extends _common {
 
 1. **PDF File Missing**: Framework automatically creates missing PDF files
 2. **Browser Installation**: Run `npm run install:browsers`
-3. **Python Dependencies**: Install reportlab with `pip3 install reportlab`
-4. **Test Failures**: Check HTML report for screenshots and error details
+3. **Test Failures**: Check HTML report for screenshots and error details
 
 ### Debug Commands
 
